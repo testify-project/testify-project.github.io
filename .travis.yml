@@ -1,0 +1,13 @@
+language: ruby
+
+rvm:
+  - 2.2.0
+
+branches:
+  only:
+  - gh-pages
+
+cache: bundler
+
+script: "bundle exec jekyll build"
+
