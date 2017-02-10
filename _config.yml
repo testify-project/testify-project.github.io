@@ -41,17 +41,17 @@ doc_versions: []
 ### Project Variables ###
 ### For GitHub Metadata see: https://help.github.com/articles/repository-metadata-on-github-pages/
 repository: testify-project/testify
-testify_version:    "0.1.3"
+testify_version:    "0.9.0"
 spring_version:     "4.2.3.RELEASE"
-springbood_version: "1.3.2.RELEASE"
+springbood_version: "1.4.0.RELEASE"
 junit_version:      "4.12"
-mockito_version:    "2.0.40-beta"
-assertj_version:    "3.3.0"
+mockito_version:    "2.5.4"
+assertj_version:    "3.5.2"
 java_version:       "1.8"
 jdk_version:        "8"
-git_version:        "1.9.1"
+git_version:        "2.9.3"
 maven_version:      "3.0.5"
-docker_version:     "1.10.0"
+docker_version:     "1.11.2"
 inject_version:     "1"
 
 ### Template Colors ###
