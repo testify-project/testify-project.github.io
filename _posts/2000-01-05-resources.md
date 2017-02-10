@@ -27,12 +27,12 @@ Alternatively, you can manually add the following dependencies to your project:
     <dependency>
         <groupId>org.testify</groupId>
         <artifactId>api</artifactId>
-        <version>${project.version}</version>
+        <version>{{ site.testify_version }}</version>
     </dependency>
     <dependency>
         <groupId>org.testify</groupId>
         <artifactId>core</artifactId>
-        <version>${project.version}</version>
+        <version>{{ site.testify_version }}</version>
     </dependency>
     <dependency>
         <groupId>org.hsqldb</groupId>
@@ -44,24 +44,19 @@ Alternatively, you can manually add the following dependencies to your project:
     <dependency>
         <groupId>org.testify.junit</groupId>
         <artifactId>unit-test</artifactId>
-        <version>${project.version}</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.testify.mock</groupId>
-        <artifactId>mockito</artifactId>
-        <version>${project.version}</version>
+        <version>{{ site.testify_version }}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.testify.tools</groupId>
         <artifactId>test-logger</artifactId>
-        <version>${project.version}</version>
+        <version>{{ site.testify_version }}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
+        <version>{{ site.junit_version }}</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
@@ -71,15 +66,18 @@ Alternatively, you can manually add the following dependencies to your project:
 To create a custom resource provider that can be used in your test cases simply implement the ResourceProvider SPI contract:
 
 {% highlight java linenos=table %}
-public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, DataSource, Connection> {
+public class InMemoryHSQLResource
+        implements ResourceProvider<JDBCDataSource, DataSource, Connection> {
 
     private JDBCDataSource server;
     private Connection client;
 
     @Override
     public JDBCDataSource configure(TestContext testContext) {
+        String url = format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName());
+
         JDBCDataSource dataSource = new JDBCDataSource();
-        dataSource.setUrl(format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName()));
+        dataSource.setUrl(url);
         dataSource.setUser("sa");
         dataSource.setPassword("");
 
@@ -87,17 +85,17 @@ public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, Da
     }
 
     @Override
-    public ResourceInstance<DataSource, Connection> start(TestContext testContext, JDBCDataSource dataSource) {
+    public ResourceInstance start(TestContext testContext,
+            JDBCDataSource dataSource) {
         try {
             server = dataSource;
             client = dataSource.getConnection();
 
-            return new ResourceInstanceBuilder<DataSource, Connection>()
+            return new ResourceInstanceBuilder()
                     .server(server, DataSource.class)
                     .client(client, Connection.class)
                     .build();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
     }
@@ -109,8 +107,7 @@ public class InMemoryHSQLResource implements ResourceProvider<JDBCDataSource, Da
                     .createStatement()
                     .executeQuery("SHUTDOWN");
             client.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
     }
