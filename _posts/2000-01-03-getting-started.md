@@ -7,7 +7,7 @@ fa-icon: toggle-on
 
 ## Configuration Checklist
 - Latest release version is [{{ site.testify_version }}][maven-central]
-- Take a look at the [release notes][releases]
+- Take a look at the [change log][changelog]
 - Install JDK version {{ site.jdk_version }} and insure `JAVA_HOME` environmental variable is set
 - Install Maven version {{ site.maven_version }} or above
 - Install Git version {{ site.git_version }}
@@ -28,6 +28,6 @@ compiler generated class files:
 </plugin>
 {% endhighlight %}
 
-[releases]: https://github.com/testify-project/testify/releases
+[changelog]: https://github.com/testify-project/testify/blob/master/CHANGELOG.md
 [maven-central]: http://repo1.maven.org/maven2/org/testifyproject
 
