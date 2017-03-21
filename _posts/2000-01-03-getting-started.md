@@ -11,7 +11,7 @@ fa-icon: toggle-on
 - Install JDK version {{ site.jdk_version }} and insure `JAVA_HOME` environmental variable is set
 - Install Maven version {{ site.maven_version }} or above
 - Install Git version {{ site.git_version }}
-- (Optional) [Install Docker version](#install-docker) {{ site.docker.version }}
+- (Optional) [Install Docker](#install-docker) {{ site.docker_version }}
 - Insure formal parameter names of constructors and methods are added to
 compiler generated class files:
 {% highlight xml linenos=table %}
@@ -29,5 +29,5 @@ compiler generated class files:
 {% endhighlight %}
 
 [releases]: https://github.com/testify-project/testify/releases
-[maven-central]: http://repo1.maven.org/maven2/org/testify
+[maven-central]: http://repo1.maven.org/maven2/org/testifyproject
 

@@ -16,7 +16,7 @@ The easiest way to get started with creating custom required resource providers 
 
 {% highlight bash linenos=table %}
 mvn archetype:generate \
- -DarchetypeGroupId=org.testify.archetypes \
+ -DarchetypeGroupId=org.testifyproject.archetypes \
  -DarchetypeArtifactId=junit-resourceprovider-archetype
 {% endhighlight %}
 
@@ -25,12 +25,12 @@ Alternatively, you can manually add the following dependencies to your project:
 {% highlight xml linenos=table %}
 <dependencies>
     <dependency>
-        <groupId>org.testify</groupId>
+        <groupId>org.testifyproject</groupId>
         <artifactId>api</artifactId>
         <version>{{ site.testify_version }}</version>
     </dependency>
     <dependency>
-        <groupId>org.testify</groupId>
+        <groupId>org.testifyproject</groupId>
         <artifactId>core</artifactId>
         <version>{{ site.testify_version }}</version>
     </dependency>
@@ -42,21 +42,27 @@ Alternatively, you can manually add the following dependencies to your project:
 
     <!-- Test Deps -->
     <dependency>
-        <groupId>org.testify.junit</groupId>
+        <groupId>org.testifyproject.junit4</groupId>
         <artifactId>unit-test</artifactId>
         <version>{{ site.testify_version }}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.testify.tools</groupId>
+        <groupId>org.testifyproject.tools</groupId>
         <artifactId>test-logger</artifactId>
-        <version>{{ site.testify_version }}</version>
+        <version>{{ site.buildtools_version }}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>{{ site.junit_version }}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>{{ site.assertj_version }}</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
@@ -74,9 +80,8 @@ public class InMemoryHSQLResource
 
     @Override
     public JDBCDataSource configure(TestContext testContext) {
-        String url = format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName());
-
         JDBCDataSource dataSource = new JDBCDataSource();
+        String url = format("jdbc:hsqldb:mem:%s?default_schema=public", testContext.getName());
         dataSource.setUrl(url);
         dataSource.setUser("sa");
         dataSource.setPassword("");
@@ -91,9 +96,9 @@ public class InMemoryHSQLResource
             server = dataSource;
             client = dataSource.getConnection();
 
-            return new ResourceInstanceBuilder()
-                    .server(server, DataSource.class)
-                    .client(client, Connection.class)
+            return new ResourceInstanceBuilder<DataSource, Connection>()
+                    .server(server, "inmemoryHSQLDataSource", DataSource.class)
+                    .client(client, "inmemoryHSQLConnection", Connection.class)
                     .build();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
@@ -117,7 +122,7 @@ public class InMemoryHSQLResource
 
 ResourceProvider? Hmmm...
 
-In the above implementation of `ResourceProvider` contract we are implementing a reusable HSQL in-memory database resource provider. Notice that our implementation:
+In the above implementation of `ResourceProvider` contract we are creating a reusable HSQL in-memory database resource provider. Notice that our implementation:
 1. Specifies 3 type parameters of `ResourceProvider` contract, JDBCDataSource (configuration), DataSource (server), and Connection (client)
 1. Does not declare a constructor
 1. Implements three methods defined by the contract (configure, start, and stop)
@@ -174,9 +179,9 @@ public class GetGreetingIT {
 Notice that we are able to inject the resource instance, data source and connection created in our `InMemoryHSQLResource` resource provider implementation which can be useful if you wish to interact with the server and the client. Please note that the above example is kitchen-sink example and may not reflect a typical use-case.
 
 
-For complete ResourceProvider implementation example please take a look at the below example and be sure to read the JavaDocs:
-[Example JUnit Resource Provider][example-junit-resourceprovider].
-
+For complete ResourceProvider implementation and examples take a look at:
+[Example JUnit Resource Provider][example-junit-resourceprovider]
+[Spring JUnit Integration Test Examples][example-junit-spring-integrationtest]
 
 ---
 
@@ -186,7 +191,7 @@ For complete ResourceProvider implementation example please take a look at the b
 
 ### Installing and Configuring Docker
 
-#### [Install Docker](#install-docker)
+#### Install Docker
 
 Before you can test your application with Docker container based needs you must
 install Docker on your system. To install Docker please follow the
@@ -281,6 +286,7 @@ public void configure(DockerClientConfig.DockerClientConfigBuilder builder) {
 
 
 [example-junit-resourceprovider]: https://github.com/testify-project/examples/tree/master/junit/example-junit-resourceprovider
+[example-junit-spring-integrationtest]: https://github.com/testify-project/examples/tree/develop/junit/example-junit-spring-integrationtest
 [docker-configuration]: https://docs.docker.com/engine/articles/configuring
 [docker-mac-install]: https://docs.docker.com/engine/installation/mac/
 [docker-windows-install]: https://docs.docker.com/engine/installation/windows/
