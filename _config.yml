@@ -29,7 +29,7 @@ description: "A landing page for Testify, a Java Testing Framework that provides
 source_link: "https://github.com/testify-project/testify"
 favicon:     "img/favicon.ico"
 touch_icon:  "img/apple-touch-icon.png"
-google_analytics_key: UA-73737063-1
+google_analytics_key: "UA-96183432-1"
 
 ### Collections ###
 collections:
