@@ -5,7 +5,8 @@ color: white
 fa-icon: toggle-on
 ---
 
-## Configuration Checklist
+**Configuration Checklist**
+
 - Latest release version is [{{ site.testify_version }}][maven-central]
 - Take a look at the [change log][changelog]
 - Install JDK version {{ site.jdk_version }} and insure `JAVA_HOME` environmental variable is set
