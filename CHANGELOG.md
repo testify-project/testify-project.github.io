@@ -13,6 +13,12 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.4] - 2017-06-06
+###Changed
+- Adopted Semantic Testing
+- Updated artifact versions
+- Fixed Broken Links and Site Layout
+
 ## [0.9.3] - 2017-05-25
 
 ###Added
