@@ -108,7 +108,7 @@ docker -H tcp://127.0.0.1:2375 ps
 
 ---
 
-#### CentOS 7 / RHEL 7 / Oracle Linux 7
+#### Fedora 24 / CentOS 7 / RHEL 7 / Oracle Linux 7
 
 ---
 
@@ -158,8 +158,17 @@ docker -H tcp://127.0.0.1:2375 ps
 
 ---
 
-TODO
-
+* Follow Docker installation and configuration instructions on [Microsoft Windows Containers site](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon). 
+* Insure `c:\ProgramData\docker\config\daemon.json` file defines `hosts` value:
+{% highlight bash linenos=table %}
+{
+    "hosts": ["tcp://127.0.0.1:2375"]
+}
+{% endhighlight %}
+* Restart Docker:
+{% highlight bash linenos=table %}
+Restart-Service docker
+{% endhighlight %}
 ---
 
 #### Mac OS X
@@ -169,6 +178,7 @@ TODO
 TODO
 
 <!--
+See https://stackoverflow.com/questions/38785991/docker-deamon-config-path-under-mac-os
 **Mac / Windows (Docker-Machine)**
 
 On Macs and Windows systems Docker installation and configuration process is a
@@ -229,8 +239,8 @@ use secure-communication then you will need to explictly configure the Docker
 Client used by Testify using `@ConfigHandler` (not recommended):
 {% highlight java linenos=table %}
 @Config
-public void configure(DockerClientConfig.DockerClientConfigBuilder builder) {
-    builder.withUri("http://192.168.99.100:2376");
+public void configure(DefaultDockerClient.Builder builder) {
+    builder.uri("http://192.168.99.100:2375");
     //add additional configuration such as registry configuration here
 }
 {% endhighlight %}

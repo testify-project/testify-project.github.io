@@ -41,10 +41,10 @@ doc_versions: []
 ### Project Variables ###
 ### For GitHub Metadata see: https://help.github.com/articles/repository-metadata-on-github-pages/
 repository: testify-project/testify
-testify_version:    "0.9.4"
+testify_version:    "0.9.5"
 resources_version:  "0.9.3"
-buildtools_version: "0.9.5"
-examples_version:   "0.9.1"
+buildtools_version: "0.9.7"
+examples_version:   "0.9.2"
 spring_version:     "4.3.7.RELEASE"
 springbood_version: "1.5.2.RELEASE"
 junit_version:      "4.12"
