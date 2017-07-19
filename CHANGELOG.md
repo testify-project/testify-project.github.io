@@ -13,6 +13,10 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.6] - 2017-07-19
+### Changed
+- Updated artifact versions
+
 ## [0.9.5] - 2017-06-14
 ### Added
 - Added Windows Docker installation and configuration instructions

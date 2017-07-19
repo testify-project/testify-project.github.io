@@ -10,11 +10,9 @@
 You can set up a local version of your Jekyll GitHub Pages site to test changes to your site locally.
 
 ### Install Prerequisites
+1. [Install Ruby 2.1.0 or higher](https://www.ruby-lang.org/en/documentation/installation/)
+1. Install Bundler
 ```bash
-# Insure you have Ruby 2.1.0 or higher installed
-ruby --version
-
-#install Bundler
 gem install bundler
 ```
 
