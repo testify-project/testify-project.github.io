@@ -6,7 +6,10 @@ safe: false
 
 
 ### site serving configuration ###
-exclude: [CNAME, README.md, .gitignore, vendor]
+exclude: [
+    CNAME, README.md, .gitignore, vendor, gulpfile.js, node_modules,
+    package.json, nbproject, Gemfile
+]
 permalink: /:title ## disables post output
 timezone: PST
 lsi: false
@@ -25,7 +28,7 @@ kramdown:
 ### content configuration ###
 title:       "Testify - Java Testing Made Simple"
 keywords:    "testify-project, Testify, Java, Mockito, Annotations, JSR-330, Docker, JUnit, TestNG, Spring, Spring Boot, HK2, Jersey, JAX-RS, Google Guice"
-description: "A landing page for Testify, a Java Testing Framework that provides a common set of annotations for writing effective unit, integration and system tests."
+description: "A landing page for Testify Project, a Java Testing Framework that provides a common set of annotations for writing effective unit, integration and system tests."
 source_link: "https://github.com/testify-project/testify"
 favicon:     "img/favicon.ico"
 touch_icon:  "img/apple-touch-icon.png"
@@ -41,21 +44,21 @@ doc_versions: []
 ### Project Variables ###
 ### For GitHub Metadata see: https://help.github.com/articles/repository-metadata-on-github-pages/
 repository: testify-project/testify
-testify_version:    "0.9.6"
+testify_version:    "0.9.7"
 resources_version:  "0.9.4"
-virtual_resources_version:  "0.9.2"
+virtual_resources_version:  "0.9.3"
 buildtools_version: "0.9.7"
 examples_version:   "0.9.2"
-spring_version:     "4.3.7.RELEASE"
-springbood_version: "1.5.2.RELEASE"
+spring_version:     "4.3.9.RELEASE"
+springbood_version: "1.5.4.RELEASE"
 junit_version:      "4.12"
-mockito_version:    "2.6.2"
-assertj_version:    "3.5.2"
+mockito_version:    "2.8.47"
+assertj_version:    "3.8.0"
 java_version:       "1.8"
 jdk_version:        "8"
 git_version:        "2.9.3"
 maven_version:      "3.1.1"
-docker_version:     "1.11.2"
+docker_version:     "1.11.2 - 17.05.0~ce"
 inject_version:     "1"
 
 ### Template Colors ###
