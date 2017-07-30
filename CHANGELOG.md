@@ -13,6 +13,13 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.7-SNAPSHOT] - 2017-07-30
+### Added
+- Added Gulp Support for better workflow.
+
+### Changed
+- Updated artifact versions
+
 ## [0.9.6] - 2017-07-19
 ### Changed
 - Updated artifact versions

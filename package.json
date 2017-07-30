@@ -1,0 +1,38 @@
+{
+  "name": "testify-project-website",
+  "version": "1.0.0",
+  "description": "Testify Project Jekyll Based Website",
+  "homepage": "https://testifyproject.org",
+  "main": "index.html",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-check-gems": "0.0.2",
+    "gulp-util": "^3.0.8",
+    "gulp-open": "^2.0.0",
+    "gulp-wait": "0.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testify-project/testify-project.github.io.git"
+  },
+  "keywords": [
+    "testify",
+    "testify-project",
+    "tdd",
+    "java",
+    "spring",
+    "springboot",
+    "jersey",
+    "hk2",
+    "guice",
+    "semantic-testing"
+  ],
+  "author": "Sharmarke Aden",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/testify-project/testify-project.github.io/issues"
+  }
+}
