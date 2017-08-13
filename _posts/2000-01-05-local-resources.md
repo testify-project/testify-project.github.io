@@ -71,7 +71,7 @@ In the above implementation of `LocalResourceProvider` contract we are creating 
 
 Our example is pretty simple because our configuration object and resource object are the same but this may not be the case for a more complex implementations. Regardless of the complexity of an implementation the ultimate goal is to provide a managed, reusable, and disposable resource for our integration and system tests and to enable us to replace production code that relies on the resource (DataSource) and client (Connection) with the ones provided by our `LocalResourceProvider` implementation.
 
-As you might guess the `configure` method is responsible for creating a pre-configured configuration object that can be refined further via `@ConfigHander` prior to starting the resource and execution of our test case. The `start` method is responsible for starting the resource and returning a `LocalResourceInstance` that encapsulates a resource component and a client component which is configured to communicate with the resource. In this example our resource instance happens to comprises of an in-memory HSQL JDBC DataSource and Connection. Finally, the stop method is responsible for gracefully stopping the resource and closing the client.
+As you might guess the `configure` method is responsible for creating a pre-configured configuration object that can be refined further via `@ConfigHander` prior to starting the resource and execution of our test case. The `start` method is responsible for starting the resource and returning a `LocalResourceInstance` that encapsulates a resource component and a client component which is configured to communicate with the resource. In this example our resource instance happens to comprises of an in-memory HSQL JDBC `DataSource` and `Connection`. Finally, the stop method is responsible for gracefully stopping the resource and closing the client.
 
 Now that we have a resource provider implementation we can start using it to provide a database resource for our integration and system tests by annotating our test class with `@LocalResource(InMemoryHSQLResource.class)`:
 
@@ -117,7 +117,7 @@ public class GetGreetingIT {
 }
 {% endhighlight %}
 
-Notice that we are able to inject the resource instance, data source and connection created in our `InMemoryHSQLResource` resource provider implementation which can be useful if you wish to interact with the resource and the client. Please note that the above example is kitchen-sink example and may not reflect a typical use-case.
+Notice that we are able to inject the resource instance, data source and connection created in our `InMemoryHSQLResource` resource provider implementation which can be useful if you wish to directly interact with the resource and the client. Please note that the above example is kitchen-sink example and may not reflect a typical use-case.
 
 
 For complete LocalResourceProvider implementations and examples take a look at:
