@@ -13,6 +13,11 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [0.9.8] - 2017-08-13
+### Changed
+- Updated testify version to 0.9.8
+- Minor clean up of the documentation
+
 ## [0.9.7] - 2017-07-30
 ### Added
 - Added Gulp Support for better workflow.
