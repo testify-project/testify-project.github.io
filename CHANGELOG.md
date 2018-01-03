@@ -12,6 +12,9 @@ was added, changed, deprecated, removed, fix and security fixes.
 - Security - Lists security fixes to security vulnerabilities
 
 ## [Unreleased]
+###
+- Updated Testify Version to 1.0.2
+- Updated documentation to reflect 1.0.2 changes
 
 ## [0.9.9] - 2017-08-17
 ### Changed
