@@ -17,8 +17,8 @@ mvn archetype:generate \
 To create a hsql resource provider that can be used in your test cases simply implement the LocalResourceProvider SPI contract:
 
 {% highlight java linenos=table %}
-public class InMemoryHSQLResource
-        implements LocalResourceProvider<JDBCDataSource, DataSource, Connection> {
+public class InMemoryHSQLResource implements
+        LocalResourceProvider<JDBCDataSource, DataSource, Connection> {
 
     private JDBCDataSource server;
     private Connection client;
@@ -37,7 +37,7 @@ public class InMemoryHSQLResource
     }
 
     @Override
-    public LocalResourceInstance start(TestContext testContext,
+    public LocalResourceInstance<DataSource, Connection> start(TestContext testContext,
             LocalResource localResource,
             JDBCDataSource dataSource)
             throws Exception {
@@ -47,17 +47,20 @@ public class InMemoryHSQLResource
         return LocalResourceInstanceBuilder.builder()
                 .resource(server, DataSource.class)
                 .client(client, Connection.class)
-                .build("hsql");
+                .build("hsql", localResource);
     }
 
     @Override
-    public void stop(TestContext testContext, LocalResource localResource)
+    public void stop(TestContext testContext,
+            LocalResource localResource,
+            LocalResourceInstance<DataSource, Connection> instance)
             throws Exception {
         server.getConnection()
                 .createStatement()
                 .executeQuery("SHUTDOWN");
         client.close();
     }
+
 }
 {% endhighlight %}
 
