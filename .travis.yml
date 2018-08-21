@@ -4,3 +4,6 @@ cache: bundler
 before_install:
  - gem install bundler
 script: "bundle exec jekyll build"
+after_script:
+    wget https://www.javadoc.io/doc/org.testifyproject/ap/1.0.5 2>/dev/null
+    wget https://www.javadoc.io/doc/org.testifyproject/core/1.0.5 2>/dev/null

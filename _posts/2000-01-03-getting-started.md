@@ -28,6 +28,48 @@ compiler generated class files:
     </configuration>
 </plugin>
 {% endhighlight %}
+- Insure Testify Java Agent is used by the surefire or failsafe plugins:
+{% highlight xml linenos=table %}
+<dependencies>
+    <dependency>
+        <groupId>org.testifyproject</groupId>
+        <artifactId>core</artifactId>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <!-- 
+                Enables the referencing of dependencies as properties. For example:
+                ${org.testifyproject:core:jar}
+            -->
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${plugin.dependency}</version>
+            <executions>
+                <execution>
+                    <id>properties</id>
+                    <goals>
+                        <goal>properties</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+                <argLine>javaagent:${org.testifyproject:core:jar}</argLine>
+            </configuration>
+        </plugin>
+        <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+                <argLine>javaagent:${org.testifyproject:core:jar}</argLine>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+{% endhighlight %}
 
 [changelog]: https://github.com/testify-project/testify/blob/master/CHANGELOG.md
 [maven-central]: http://repo1.maven.org/maven2/org/testifyproject
