@@ -13,6 +13,11 @@ was added, changed, deprecated, removed, fix and security fixes.
 
 ## [Unreleased]
 
+## [1.0.2] - 2018-08-20
+### Changes
+- Updated versions
+- Minor documentation cleanup and update
+
 ## [1.0.1] - 2018-02-10
 ### Changes
 - Updated testify version to 1.0.3
